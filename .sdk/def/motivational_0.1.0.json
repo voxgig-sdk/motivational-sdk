@@ -1,0 +1,173 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Motivational API",
+    "description": "This API provides a collection of catholic and secular motivational phrases to help users overcome their challenges. It is intended to be utilized in applications focused on motivation and support, like addiction recovery tools.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/GomezMig03/MotivationalAPI"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/GomezMig03/MotivationalAPI/blob/main/LICENSE"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI",
+      "description": "jsDelivr CDN server"
+    }
+  ],
+  "paths": {
+    "/{language}.json": {
+      "get": {
+        "summary": "Get motivational phrases by language",
+        "description": "Retrieves a collection of motivational phrases in the specified language. Each phrase includes the text, author, and whether it is religious (catholic) or secular.",
+        "operationId": "getMotivationalPhrases",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "Language code for the motivational phrases",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "es",
+                "fr",
+                "ja"
+              ]
+            },
+            "examples": {
+              "english": {
+                "value": "en",
+                "summary": "English phrases"
+              },
+              "spanish": {
+                "value": "es",
+                "summary": "Spanish phrases"
+              },
+              "french": {
+                "value": "fr",
+                "summary": "French phrases"
+              },
+              "japanese": {
+                "value": "ja",
+                "summary": "Japanese phrases"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with array of motivational phrases",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MotivationalPhrase"
+                  }
+                },
+                "examples": {
+                  "phrases": {
+                    "summary": "Example motivational phrases",
+                    "value": [
+                      {
+                        "phrase": "The only way out is through.",
+                        "author": "Robert Frost",
+                        "religion": 0
+                      },
+                      {
+                        "phrase": "I can do all things through Christ who strengthens me.",
+                        "author": "Philippians 4:13",
+                        "religion": 1
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Language file not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Phrases"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MotivationalPhrase": {
+        "type": "object",
+        "properties": {
+          "phrase": {
+            "type": "string",
+            "description": "The motivational phrase text"
+          },
+          "author": {
+            "type": "string",
+            "description": "The author of the phrase or source reference"
+          },
+          "religion": {
+            "type": "integer",
+            "description": "Indicates if the phrase is religious. 1 = catholic, 0 = non-religious",
+            "enum": [
+              0,
+              1
+            ]
+          }
+        },
+        "required": [
+          "phrase",
+          "author",
+          "religion"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "code": {
+            "type": "integer",
+            "description": "Error code"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Phrases",
+      "description": "Operations related to retrieving motivational phrases"
+    }
+  ],
+  "externalDocs": {
+    "description": "GitHub Repository",
+    "url": "https://github.com/GomezMig03/MotivationalAPI"
+  }
+}

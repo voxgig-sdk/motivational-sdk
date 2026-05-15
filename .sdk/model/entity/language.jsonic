@@ -1,0 +1,64 @@
+# Entity: language
+
+main: kit: entity: language: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "phrase"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "religion"
+      req: true
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "language"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "en"
+                kind: "param"
+                name: "language"
+                orig: "language"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{language}.json"
+          parts: [
+            "{language}.json"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

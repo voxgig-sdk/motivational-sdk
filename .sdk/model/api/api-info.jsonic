@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://github.com/GomezMig03/MotivationalAPI"
+      }
+      description: "This API provides a collection of catholic and secular motivational phrases to help users overcome their challenges. It is intended to be utilized in applications focused on motivation and support, like addiction recovery tools."
+      license: {
+        name: "MIT"
+        url: "https://github.com/GomezMig03/MotivationalAPI/blob/main/LICENSE"
+      }
+      servers: [
+        {
+          description: "jsDelivr CDN server"
+          url: "https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI"
+        }
+      ]
+      title: "Motivational API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

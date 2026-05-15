@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "language": {
+      "LANGUAGE00": {
+        "author": "s1e",
+        "phrase": "s1f",
+        "religion": "s20",
+        "language": "LANGUAGE01"
+      },
+      "LANGUAGE01": {
+        "author": "s3c",
+        "phrase": "s3d",
+        "religion": "s3e",
+        "language": "LANGUAGE01"
+      },
+      "LANGUAGE02": {
+        "author": "s5a",
+        "phrase": "s5b",
+        "religion": "s5c",
+        "language": "LANGUAGE01"
+      }
+    }
+  },
+  "new": {
+    "language": {
+      "language_ref01": {
+        "author": "s78",
+        "phrase": "s79",
+        "religion": "s7a"
+      }
+    }
+  }
+}
