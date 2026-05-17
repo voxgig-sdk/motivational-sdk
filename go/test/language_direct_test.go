@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/motivational-sdk"
-	"github.com/voxgig-sdk/motivational-sdk/core"
+	sdk "github.com/voxgig-sdk/motivational-sdk/go"
+	"github.com/voxgig-sdk/motivational-sdk/go/core"
 )
 
 func TestLanguageDirect(t *testing.T) {

@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/motivational-sdk/core"
+	"github.com/voxgig-sdk/motivational-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/motivational-sdk/go/utility/struct"
 )
 
 type LanguageEntity struct {

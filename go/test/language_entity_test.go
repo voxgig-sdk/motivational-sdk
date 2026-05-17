@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/motivational-sdk"
-	"github.com/voxgig-sdk/motivational-sdk/core"
+	sdk "github.com/voxgig-sdk/motivational-sdk/go"
+	"github.com/voxgig-sdk/motivational-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/motivational-sdk/go/utility/struct"
 )
 
 func TestLanguageEntity(t *testing.T) {

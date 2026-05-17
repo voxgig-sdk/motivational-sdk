@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/motivational-sdk/core"
+import "github.com/voxgig-sdk/motivational-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

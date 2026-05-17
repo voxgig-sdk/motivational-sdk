@@ -29,7 +29,7 @@ class Config {
 
 
   options = {
-    base: 'https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI',
+    base: '$$main.kit.info.servers.0.url$$',
 
     'AUTHBLOCK'headers: 'HEADERS',
 
