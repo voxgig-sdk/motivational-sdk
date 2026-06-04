@@ -20,9 +20,6 @@ class MotivationalConfig
             ],
             "options" => [
                 "base" => "https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

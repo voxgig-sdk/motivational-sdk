@@ -86,14 +86,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'MOTIVATIONAL_TEST_LANGUAGE_ENTID': {},
     'MOTIVATIONAL_TEST_LIVE': 'FALSE',
-    'MOTIVATIONAL_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.MOTIVATIONAL_TEST_LIVE
 
   if (live) {
     const client = new MotivationalSDK({
-      apikey: env.MOTIVATIONAL_APIKEY,
     })
 
     let idmap: any = env['MOTIVATIONAL_TEST_LANGUAGE_ENTID']

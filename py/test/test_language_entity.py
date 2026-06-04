@@ -94,7 +94,6 @@ def _language_basic_setup(extra):
         "MOTIVATIONAL_TEST_LANGUAGE_ENTID": idmap,
         "MOTIVATIONAL_TEST_LIVE": "FALSE",
         "MOTIVATIONAL_TEST_EXPLAIN": "FALSE",
-        "MOTIVATIONAL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +104,6 @@ def _language_basic_setup(extra):
     if env.get("MOTIVATIONAL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("MOTIVATIONAL_APIKEY"),
             },
             extra or {},
         ])
