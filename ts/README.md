@@ -10,7 +10,7 @@ The TypeScript SDK for the Motivational API — a type-safe, entity-oriented cli
 
 ## Install
 ```bash
-npm install motivational
+npm install @voxgig-sdk/motivational
 ```
 ## Tutorial: your first API call
 

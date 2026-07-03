@@ -10,7 +10,7 @@ The Python SDK for the Motivational API — an entity-oriented client following 
 
 ## Install
 ```bash
-pip install motivational-sdk
+pip install voxgig-sdk-motivational
 ```
 
 Or install from source:

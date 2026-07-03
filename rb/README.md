@@ -10,13 +10,13 @@ The Ruby SDK for the Motivational API — an entity-oriented client using idioma
 
 ## Install
 ```bash
-gem install motivational-sdk
+gem install voxgig-sdk-motivational
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "motivational-sdk"
+gem "voxgig-sdk-motivational"
 ```
 
 Then run:

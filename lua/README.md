@@ -10,7 +10,7 @@ The Lua SDK for the Motivational API — an entity-oriented client using Lua con
 
 ## Install
 ```bash
-luarocks install motivational-sdk
+luarocks install voxgig-sdk-motivational
 ```
 
 If the module is not yet published, add the source directory to

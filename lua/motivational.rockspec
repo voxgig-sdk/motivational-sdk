@@ -8,12 +8,14 @@ source = {
   dir = "motivational-sdk/lua"
 }
 description = {
-  summary = "Motivational SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Motivational public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/motivational-sdk",
+  issues_url = "https://github.com/voxgig-sdk/motivational-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "motivational" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {
