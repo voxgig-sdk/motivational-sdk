@@ -118,12 +118,14 @@ func languageDirectSetup(mockres any) *languageDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MOTIVATIONAL_TEST_LANGUAGE_ENTID": map[string]any{},
 		"MOTIVATIONAL_TEST_LIVE":    "FALSE",
+		"MOTIVATIONAL_APIKEY":       "NONE",
 	})
 
 	live := env["MOTIVATIONAL_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["MOTIVATIONAL_APIKEY"],
 		}
 		client := sdk.NewMotivationalSDK(mergedOpts)
 

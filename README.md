@@ -1,20 +1,8 @@
 # Motivational SDK
 
-Catholic and secular motivational phrases served as JSON, one file per language
+Motivational API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Motivational API
-
-The Motivational API is a small open-source dataset of motivational phrases maintained by [GomezMig03](https://github.com/GomezMig03/MotivationalAPI). It mixes Catholic and secular quotes, originally assembled to support an addiction-management application, and it is served as static JSON via the [jsDelivr CDN](https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI) directly from the GitHub repository.
-
-What you get from the API:
-
-- One JSON file per supported language at `https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI/<language>.json` (for example `en.json`, `es.json`, `fr.json`, `ja.json`).
-- Each file is an array of phrase objects with the fields `phrase` (the quote), `author` (attribution), and `religion` (`1` for Catholic, `0` for non-religious).
-- Clients typically fetch a language file once and pick a random entry locally.
-
-Operational notes: no authentication is required, CORS is enabled, and the data is delivered as cached static files through jsDelivr, so request volume is bounded by the CDN rather than a per-key rate limit.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install motivational-sdk
 luarocks install motivational-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { MotivationalSDK } from 'motivational'
 
-const client = new MotivationalSDK({})
+const client = new MotivationalSDK({
+  apikey: process.env.MOTIVATIONAL_APIKEY,
+})
 
 // List all languages
 const languages = await client.Language().list()
+console.log(languages.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Language** | A language-specific collection of motivational phrases, fetched as a single JSON array from `https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI/<language>.json` (e.g. `en.json`, `es.json`, `fr.json`, `ja.json`). | `/{language}.json` |
+| **Language** |  | `/{language}.json` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from motivational_sdk import MotivationalSDK
 
-client = MotivationalSDK({})
+client = MotivationalSDK({
+    "apikey": os.environ.get("MOTIVATIONAL_APIKEY"),
+})
 
 # List all languages
-languages, err = client.Language(None).list(None, None)
+languages, err = client.Language().list()
+print(languages)
 ```
 
 ### PHP
@@ -124,10 +118,13 @@ languages, err = client.Language(None).list(None, None)
 <?php
 require_once 'motivational_sdk.php';
 
-$client = new MotivationalSDK([]);
+$client = new MotivationalSDK([
+    "apikey" => getenv("MOTIVATIONAL_APIKEY"),
+]);
 
 // List all languages
-[$languages, $err] = $client->Language(null)->list(null, null);
+[$languages, $err] = $client->Language()->list();
+print_r($languages);
 ```
 
 ### Golang
@@ -135,10 +132,13 @@ $client = new MotivationalSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/motivational-sdk/go"
 
-client := sdk.NewMotivationalSDK(map[string]any{})
+client := sdk.NewMotivationalSDK(map[string]any{
+    "apikey": os.Getenv("MOTIVATIONAL_APIKEY"),
+})
 
 // List all languages
 languages, err := client.Language(nil).List(nil, nil)
+fmt.Println(languages)
 ```
 
 ### Ruby
@@ -146,10 +146,13 @@ languages, err := client.Language(nil).List(nil, nil)
 ```ruby
 require_relative "Motivational_sdk"
 
-client = MotivationalSDK.new({})
+client = MotivationalSDK.new({
+  "apikey" => ENV["MOTIVATIONAL_APIKEY"],
+})
 
 # List all languages
-languages, err = client.Language(nil).list(nil, nil)
+languages, err = client.Language().list
+puts languages
 ```
 
 ### Lua
@@ -157,10 +160,13 @@ languages, err = client.Language(nil).list(nil, nil)
 ```lua
 local sdk = require("motivational_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("MOTIVATIONAL_APIKEY"),
+})
 
 -- List all languages
-local languages, err = client:Language(nil):list(nil, nil)
+local languages, err = client:Language():list()
+print(languages)
 ```
 
 ## Unit testing in offline mode
@@ -179,25 +185,21 @@ const result = await client.Language().load({ id: 'test01' })
 ### Python
 
 ```python
-client = MotivationalSDK.test(None, None)
-result, err = client.Language(None).load(
-    {"id": "test01"}, None
-)
+client = MotivationalSDK.test()
+result, err = client.Language().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = MotivationalSDK::test(null, null);
-[$result, $err] = $client->Language(null)->load(
-    ["id" => "test01"], null
-);
+$client = MotivationalSDK::test();
+[$result, $err] = $client->Language()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Language(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -206,19 +208,15 @@ result, err := client.Language(nil).Load(
 ### Ruby
 
 ```ruby
-client = MotivationalSDK.test(nil, nil)
-result, err = client.Language(nil).load(
-  { "id" => "test01" }, nil
-)
+client = MotivationalSDK.test
+result, err = client.Language().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Language(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Language():load({ id = "test01" })
 ```
 
 ## How it works
@@ -322,14 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Motivational API
-
-- Upstream: [https://github.com/GomezMig03/MotivationalAPI](https://github.com/GomezMig03/MotivationalAPI)
-
-- Source content and code are released under the MIT License.
-- Contributions of new phrases, translations, and corrections are welcomed by the upstream project.
-- Attribution to the original authors of each quote is included via the `author` field on each phrase.
 
 ---
 

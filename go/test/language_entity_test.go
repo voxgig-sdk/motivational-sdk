@@ -121,6 +121,7 @@ func languageBasicSetup(extra map[string]any) *entityTestSetup {
 		"MOTIVATIONAL_TEST_LANGUAGE_ENTID": idmap,
 		"MOTIVATIONAL_TEST_LIVE":      "FALSE",
 		"MOTIVATIONAL_TEST_EXPLAIN":   "FALSE",
+		"MOTIVATIONAL_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["MOTIVATIONAL_TEST_LANGUAGE_ENTID"])
@@ -131,6 +132,7 @@ func languageBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["MOTIVATIONAL_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["MOTIVATIONAL_APIKEY"],
 			},
 			extra,
 		})

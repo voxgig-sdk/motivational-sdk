@@ -77,12 +77,14 @@ function language_direct_setup(mockres)
   local env = runner.env_override({
     ["MOTIVATIONAL_TEST_LANGUAGE_ENTID"] = {},
     ["MOTIVATIONAL_TEST_LIVE"] = "FALSE",
+    ["MOTIVATIONAL_APIKEY"] = "NONE",
   })
 
   local live = env["MOTIVATIONAL_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["MOTIVATIONAL_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

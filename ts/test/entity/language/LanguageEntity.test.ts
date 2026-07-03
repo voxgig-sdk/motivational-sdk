@@ -114,6 +114,7 @@ function basicSetup(extra?: any) {
     'MOTIVATIONAL_TEST_LANGUAGE_ENTID': idmap,
     'MOTIVATIONAL_TEST_LIVE': 'FALSE',
     'MOTIVATIONAL_TEST_EXPLAIN': 'FALSE',
+    'MOTIVATIONAL_APIKEY': 'NONE',
   })
 
   idmap = env['MOTIVATIONAL_TEST_LANGUAGE_ENTID']
@@ -123,6 +124,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new MotivationalSDK(merge([
       {
+        apikey: env.MOTIVATIONAL_APIKEY,
       },
       extra
     ]))

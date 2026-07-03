@@ -82,12 +82,14 @@ function language_direct_setup($mockres)
     $env = Runner::env_override([
         "MOTIVATIONAL_TEST_LANGUAGE_ENTID" => [],
         "MOTIVATIONAL_TEST_LIVE" => "FALSE",
+        "MOTIVATIONAL_APIKEY" => "NONE",
     ]);
 
     $live = $env["MOTIVATIONAL_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["MOTIVATIONAL_APIKEY"],
         ];
         $client = new MotivationalSDK($merged_opts);
         return [

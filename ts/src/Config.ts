@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -55,43 +59,45 @@ class Config {
     "language": {
       "fields": [
         {
+          "active": true,
           "name": "author",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "phrase",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "religion",
           "req": true,
           "type": "`$INTEGER`",
-          "active": true,
           "index$": 2
         }
       ],
       "name": "language",
       "op": {
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
               "args": {
                 "params": [
                   {
+                    "active": true,
                     "example": "en",
                     "kind": "param",
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -109,11 +115,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "list"
         }
       },
