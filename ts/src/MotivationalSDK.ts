@@ -2,6 +2,8 @@
 
 import { LanguageEntity } from './entity/LanguageEntity'
 
+export type * from './MotivationalTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class MotivationalSDK {
 
 
 
+  _language?: LanguageEntity
+
+  // Idiomatic facade: `client.language.list()` / `client.language.load({ id })`.
+  get language(): LanguageEntity {
+    return (this._language ??= new LanguageEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.language` instead. */
   Language(data?: any) {
     const self = this
     return new LanguageEntity(self,data)

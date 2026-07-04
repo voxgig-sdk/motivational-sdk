@@ -9,9 +9,10 @@ The PHP SDK for the Motivational API — an entity-oriented client using PHP con
 
 
 ## Install
-```bash
-composer require voxgig-sdk/motivational
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/motivational-sdk/releases](https://github.com/voxgig-sdk/motivational-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,22 +26,22 @@ loading a specific record.
 <?php
 require_once 'motivational_sdk.php';
 
-$client = new MotivationalSDK([
-    "apikey" => getenv("MOTIVATIONAL_APIKEY"),
-]);
+$client = new MotivationalSDK();
 ```
 
 ### 2. List languages
 
 ```php
-[$result, $err] = $client->Language()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->language()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
@@ -52,28 +53,31 @@ if (is_array($result)) {
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -87,7 +91,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = MotivationalSDK::test();
 
-[$result, $err] = $client->Motivational()->load(["id" => "test01"]);
+$result = $client->language()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -122,7 +126,6 @@ Create a `.env.local` file at the project root:
 
 ```
 MOTIVATIONAL_TEST_LIVE=TRUE
-MOTIVATIONAL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -145,7 +148,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -191,8 +193,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -224,7 +230,7 @@ API path: `/{language}.json`
 
 ### Language
 
-Create an instance: `const language = client.Language()`
+Create an instance: `const language = client.language`
 
 #### Operations
 
@@ -243,7 +249,7 @@ Create an instance: `const language = client.Language()`
 #### Example: List
 
 ```ts
-const languages = await client.Language().list()
+const languages = await client.language.list()
 ```
 
 
@@ -318,11 +324,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$language = $client->language();
+$language->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $language->dataGet() now returns the loaded language data
+// $language->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

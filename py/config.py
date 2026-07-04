@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -68,6 +65,7 @@ def make_config():
                       "orig": "language",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

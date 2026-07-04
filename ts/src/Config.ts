@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -97,7 +93,8 @@ class Config {
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

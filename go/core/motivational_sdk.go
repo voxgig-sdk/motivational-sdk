@@ -245,6 +245,9 @@ func (sdk *MotivationalSDK) Direct(fetchargs map[string]any) (map[string]any, er
 }
 
 
+// Language returns a Language entity bound to this client.
+// Idiomatic usage: client.Language(nil).List(nil, nil) or
+// client.Language(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MotivationalSDK) Language(data map[string]any) MotivationalEntity {
 	return NewLanguageEntityFunc(sdk, data)
 }

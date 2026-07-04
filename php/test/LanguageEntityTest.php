@@ -52,8 +52,7 @@ class LanguageEntityTest extends TestCase
             "language" => $setup["idmap"]["language01"],
         ];
 
-        [$language_ref01_list_result, $err] = $language_ref01_ent->list($language_ref01_match, null);
-        $this->assertNull($err);
+        $language_ref01_list_result = $language_ref01_ent->list($language_ref01_match, null);
         $this->assertIsArray($language_ref01_list_result);
 
     }
@@ -88,7 +87,6 @@ function language_basic_setup($extra)
         "MOTIVATIONAL_TEST_LANGUAGE_ENTID" => $idmap,
         "MOTIVATIONAL_TEST_LIVE" => "FALSE",
         "MOTIVATIONAL_TEST_EXPLAIN" => "FALSE",
-        "MOTIVATIONAL_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +98,6 @@ function language_basic_setup($extra)
     if ($env["MOTIVATIONAL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["MOTIVATIONAL_APIKEY"],
             ],
             $extra ?? [],
         ]);

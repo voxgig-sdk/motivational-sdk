@@ -33,7 +33,7 @@ class LanguageDirectTest < Minitest::Test
       params["language"] = "direct01"
     end
 
-    result, err = client.direct({
+    result = client.direct({
       "path" => "{language}.json",
       "method" => "GET",
       "params" => params,
@@ -42,8 +42,8 @@ class LanguageDirectTest < Minitest::Test
       # Live mode is lenient: synthetic IDs frequently 4xx and the list-
       # response shape varies wildly across public APIs. Skip rather than
       # fail when the call doesn't return a usable list.
-      if !err.nil?
-        skip("list call failed (likely synthetic IDs against live API): #{err}")
+      if !result["err"].nil?
+        skip("list call failed (likely synthetic IDs against live API): #{result["err"]}")
         return
       end
       unless result["ok"]
@@ -56,7 +56,7 @@ class LanguageDirectTest < Minitest::Test
         return
       end
     else
-      assert_nil err
+      assert_nil result["err"]
       assert result["ok"]
       assert_equal 200, Helpers.to_int(result["status"])
       assert result["data"].is_a?(Array)
@@ -76,14 +76,12 @@ def language_direct_setup(mockres)
   env = Runner.env_override({
     "MOTIVATIONAL_TEST_LANGUAGE_ENTID" => {},
     "MOTIVATIONAL_TEST_LIVE" => "FALSE",
-    "MOTIVATIONAL_APIKEY" => "NONE",
   })
 
   live = env["MOTIVATIONAL_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["MOTIVATIONAL_APIKEY"],
     }
     client = MotivationalSDK.new(merged_opts)
     return {

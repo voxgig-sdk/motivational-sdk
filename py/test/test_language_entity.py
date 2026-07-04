@@ -52,8 +52,7 @@ class TestLanguageEntity:
             "language": setup["idmap"]["language01"],
         }
 
-        language_ref01_list_result, err = language_ref01_ent.list(language_ref01_match, None)
-        assert err is None
+        language_ref01_list_result = language_ref01_ent.list(language_ref01_match, None)
         assert isinstance(language_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _language_basic_setup(extra):
         "MOTIVATIONAL_TEST_LANGUAGE_ENTID": idmap,
         "MOTIVATIONAL_TEST_LIVE": "FALSE",
         "MOTIVATIONAL_TEST_EXPLAIN": "FALSE",
-        "MOTIVATIONAL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _language_basic_setup(extra):
     if env.get("MOTIVATIONAL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("MOTIVATIONAL_APIKEY"),
             },
             extra or {},
         ])

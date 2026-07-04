@@ -38,7 +38,7 @@ class LanguageDirectTest extends TestCase
             $params["language"] = "direct01";
         }
 
-        [$result, $err] = $client->direct([
+        $result = $client->direct([
             "path" => "{language}.json",
             "method" => "GET",
             "params" => $params,
@@ -47,8 +47,8 @@ class LanguageDirectTest extends TestCase
             // Live mode is lenient: synthetic IDs frequently 4xx and the
             // list-response shape varies wildly across public APIs. Skip
             // rather than fail when the call doesn't return a usable list.
-            if ($err !== null) {
-                $this->markTestSkipped("list call failed (likely synthetic IDs against live API): " . (string)$err);
+            if (!empty($result["err"])) {
+                $this->markTestSkipped("list call failed (likely synthetic IDs against live API): " . (string)$result["err"]);
                 return;
             }
             if (empty($result["ok"])) {
@@ -61,7 +61,7 @@ class LanguageDirectTest extends TestCase
                 return;
             }
         } else {
-            $this->assertNull($err);
+            $this->assertArrayNotHasKey("err", $result);
             $this->assertTrue($result["ok"]);
             $this->assertEquals(200, Helpers::to_int($result["status"]));
             $this->assertIsArray($result["data"]);
@@ -82,14 +82,12 @@ function language_direct_setup($mockres)
     $env = Runner::env_override([
         "MOTIVATIONAL_TEST_LANGUAGE_ENTID" => [],
         "MOTIVATIONAL_TEST_LIVE" => "FALSE",
-        "MOTIVATIONAL_APIKEY" => "NONE",
     ]);
 
     $live = $env["MOTIVATIONAL_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["MOTIVATIONAL_APIKEY"],
         ];
         $client = new MotivationalSDK($merged_opts);
         return [

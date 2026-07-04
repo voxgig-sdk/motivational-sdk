@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `MotivationalSDK.test()`.
 ## LanguageEntity
 
 ```ts
-const language = client.Language()
+const language = client.language
 ```
 
 ### Fields
@@ -128,7 +127,7 @@ const language = client.Language()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Language().list()
+const results = await client.language.list()
 ```
 
 ### Common Methods

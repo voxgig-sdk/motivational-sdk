@@ -45,6 +45,7 @@ class LanguageEntity
     end
   end
 
+  # @return [Language, Hash] the current Language data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class LanguageEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Language fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class LanguageEntity
   
 
   
+  # List Language items matching the given filter.
+  #
+  # @param reqmatch [LanguageListMatch, Hash, nil] match filter (any subset of Language fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Language>, Array] the matching Language items; raises MotivationalError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
