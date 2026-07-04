@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## LanguageEntity
 
 ```lua
-local language = client:language(nil)
+local language = client:Language(nil)
 ```
 
 ### Fields
@@ -101,7 +101,7 @@ local language = client:language(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:language():list()
+local results, err = client:Language():list()
 ```
 
 ### Common Methods

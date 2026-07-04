@@ -28,16 +28,14 @@ require_relative "Motivational_sdk"
 client = MotivationalSDK.new
 ```
 
-### 2. List languages
+### 2. List language records
 
 ```ruby
 begin
-  result = client.language.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Language records — iterate directly.
+  languages = client.Language.list
+  languages.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = MotivationalSDK.test
+client = MotivationalSDK.test({
+  "entity" => { "language" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.language.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+language = client.Language.load({ "id" => "test01" })
+puts language
 ```
 
 ### Use a custom fetch function
@@ -225,7 +227,7 @@ API path: `/{language}.json`
 
 ### Language
 
-Create an instance: `const language = client.language`
+Create an instance: `language = client.Language`
 
 #### Operations
 
@@ -243,8 +245,9 @@ Create an instance: `const language = client.language`
 
 #### Example: List
 
-```ts
-const languages = await client.language.list()
+```ruby
+# list returns an Array of Language records (raises on error).
+languages = client.Language.list
 ```
 
 
@@ -319,7 +322,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-language = client.language
+language = client.Language
 language.load({ "id" => "example_id" })
 
 # language.data_get now returns the loaded language data

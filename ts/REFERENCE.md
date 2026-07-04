@@ -109,7 +109,7 @@ Alias for `MotivationalSDK.test()`.
 ## LanguageEntity
 
 ```ts
-const language = client.language
+const language = client.Language()
 ```
 
 ### Fields
@@ -127,7 +127,7 @@ const language = client.language
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.language.list()
+const results = await client.Language().list()
 ```
 
 ### Common Methods

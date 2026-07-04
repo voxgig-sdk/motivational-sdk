@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## LanguageEntity
 
 ```php
-$language = $client->language();
+$language = $client->Language();
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ $language = $client->language();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->language()->list([]);
+$results = $client->Language()->list([]);
 ```
 
 ### Common Methods

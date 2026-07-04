@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## LanguageEntity
 
 ```ruby
-language = client.language
+language = client.Language
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ language = client.language
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.language.list(nil)
+results = client.Language.list(nil)
 ```
 
 ### Common Methods

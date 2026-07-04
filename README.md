@@ -26,9 +26,11 @@ import { MotivationalSDK } from '@voxgig-sdk/motivational'
 
 const client = new MotivationalSDK()
 
-// List all languages
-const languages = await client.language.list()
-console.log(languages.data)
+// List all languages (returns Language[])
+const languages = await client.Language().list()
+for (const language of languages) {
+  console.log(language)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from motivational_sdk import MotivationalSDK
 
 client = MotivationalSDK()
 
-# List all languages
-languages = client.language.list()
-print(languages)
+# List all languages (returns a list, raises on error)
+languages = client.Language().list({})
+for language in languages:
+    print(language)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'motivational_sdk.php';
 
 $client = new MotivationalSDK();
 
-// List all languages (throws on error)
-$languages = $client->language()->list();
+// List all languages (returns an array; throws on error)
+$languages = $client->Language()->list();
 print_r($languages);
 ```
 
@@ -120,8 +123,8 @@ require_relative "Motivational_sdk"
 
 client = MotivationalSDK.new
 
-# List all languages
-languages = client.language.list
+# List all languages (returns an Array; raises on error)
+languages = client.Language.list
 puts languages
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("motivational_sdk")
 local client = sdk.new()
 
 -- List all languages
-local languages, err = client:language():list()
+local languages, err = client:Language():list()
 print(languages)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = MotivationalSDK.test()
-const result = await client.language.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const language = await client.Language().load({ id: 'test01' })
+// language is a bare Language populated with mock data
+console.log(language)
 ```
 
 ### Python
 
 ```python
 client = MotivationalSDK.test()
-result = client.language.load({"id": "test01"})
+language = client.Language().load({"id": "test01"})
+print(language)
 ```
 
 ### PHP
 
 ```php
-$client = MotivationalSDK::test();
-$result = $client->language()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = MotivationalSDK::test([
+    "entity" => ["language" => ["test01" => ["id" => "test01"]]],
+]);
+$language = $client->Language()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.Language(nil).Load(
 ### Ruby
 
 ```ruby
-client = MotivationalSDK.test
-result = client.language.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = MotivationalSDK.test({
+  "entity" => { "language" => { "test01" => { "id" => "test01" } } },
+})
+language = client.Language.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:language():load({ id = "test01" })
+local result, err = client:Language():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

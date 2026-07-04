@@ -31,14 +31,16 @@ from motivational_sdk import MotivationalSDK
 client = MotivationalSDK()
 ```
 
-### 2. List languages
+### 2. List language records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.language.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    languages = client.Language().list({})
+    for language in languages:
+        print(language)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = MotivationalSDK.test()
 
-result = client.language.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+language = client.Language().load({"id": "test01"})
+# language contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -222,7 +225,7 @@ API path: `/{language}.json`
 
 ### Language
 
-Create an instance: `const language = client.language`
+Create an instance: `language = client.Language()`
 
 #### Operations
 
@@ -240,8 +243,8 @@ Create an instance: `const language = client.language`
 
 #### Example: List
 
-```ts
-const languages = await client.language.list()
+```python
+languages = client.Language().list({})
 ```
 
 
@@ -315,7 +318,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-language = client.language
+language = client.Language()
 language.load({"id": "example_id"})
 
 # language.data_get() now returns the loaded language data

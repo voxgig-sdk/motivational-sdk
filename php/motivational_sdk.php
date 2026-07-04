@@ -233,10 +233,10 @@ class MotivationalSDK
 
     private $_language = null;
 
-    // Idiomatic facade: $client->language()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Language() (PHP method
-    // names are case-insensitive).
-    public function language($data = null)
+    // Canonical facade: $client->Language()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->language()
+    // resolves here too.
+    public function Language($data = null)
     {
         require_once __DIR__ . '/entity/language_entity.php';
         if ($data === null) {

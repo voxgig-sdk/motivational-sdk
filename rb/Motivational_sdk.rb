@@ -208,13 +208,7 @@ class MotivationalSDK
   end
 
 
-  # Idiomatic facade: client.language.list / client.language.load({ "id" => ... })
-  def language
-    require_relative 'entity/language_entity'
-    @language ||= LanguageEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.language instead.
+  # Canonical facade: client.Language.list / client.Language.load({ "id" => ... })
   def Language(data = nil)
     require_relative 'entity/language_entity'
     LanguageEntity.new(self, data)

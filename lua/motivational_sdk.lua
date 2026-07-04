@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:language():list() / client:language():load({ id = ... })
-function MotivationalSDK:language(data)
+-- Idiomatic facade: client:Language():list() / client:Language():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MotivationalSDK:Language(data)
   local EntityMod = require("entity.language_entity")
   if data == nil then
     if self._language == nil then
@@ -253,12 +254,6 @@ function MotivationalSDK:language(data)
     end
     return self._language
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:language() instead.
-function MotivationalSDK:Language(data)
-  local EntityMod = require("entity.language_entity")
   return EntityMod.new(self, data)
 end
 

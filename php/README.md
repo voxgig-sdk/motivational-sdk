@@ -29,18 +29,16 @@ require_once 'motivational_sdk.php';
 $client = new MotivationalSDK();
 ```
 
-### 2. List languages
+### 2. List language records
 
 ```php
 try {
-    $result = $client->language()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Language records — iterate directly.
+    $languages = $client->Language()->list();
+    foreach ($languages as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = MotivationalSDK::test();
+$client = MotivationalSDK::test([
+    "entity" => ["language" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->language()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$language = $client->Language()->load(["id" => "test01"]);
+print_r($language);
 ```
 
 ### Use a custom fetch function
@@ -230,7 +232,7 @@ API path: `/{language}.json`
 
 ### Language
 
-Create an instance: `const language = client.language`
+Create an instance: `$language = $client->Language();`
 
 #### Operations
 
@@ -248,8 +250,9 @@ Create an instance: `const language = client.language`
 
 #### Example: List
 
-```ts
-const languages = await client.language.list()
+```php
+// list() returns an array of Language records (throws on error).
+$languages = $client->Language()->list();
 ```
 
 
@@ -324,7 +327,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$language = $client->language();
+$language = $client->Language();
 $language->load(["id" => "example_id"]);
 
 // $language->dataGet() now returns the loaded language data

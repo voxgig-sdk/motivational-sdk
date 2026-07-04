@@ -220,25 +220,15 @@ class MotivationalSDK:
         }
 
 
-    @property
-    def language(self):
-        """Idiomatic facade: client.language.list() / client.language.load({"id": ...})."""
-        from entity.language_entity import LanguageEntity
-        cached = getattr(self, "_language", None)
-        if cached is None:
-            cached = LanguageEntity(self, None)
-            self._language = cached
-        return cached
-
-    def Language(self, data=None):
-        # Deprecated: use client.language instead.
+    def Language(self, data=None) -> "LanguageEntity":
+        """Entity factory: client.Language().list({}) / client.Language().load({"id": ...})."""
         from entity.language_entity import LanguageEntity
         return LanguageEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "MotivationalSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class MotivationalSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.language_entity import LanguageEntity

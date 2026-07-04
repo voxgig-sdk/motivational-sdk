@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## LanguageEntity
 
 ```python
-language = client.language
+language = client.Language()
 ```
 
 ### Fields
@@ -98,7 +98,9 @@ language = client.language
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.language.list({})
+results = client.Language().list({})
+for language in results:
+    print(language)
 ```
 
 ### Common Methods
