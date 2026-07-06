@@ -8,7 +8,7 @@ Complete API reference for the Motivational Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'motivational_sdk'
+require_relative 'Motivational_sdk'
 
 client = MotivationalSDK.new(options)
 ```
@@ -93,18 +93,18 @@ language = client.Language
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | Yes |  |
-| `phrase` | ``$STRING`` | Yes |  |
-| `religion` | ``$INTEGER`` | Yes |  |
+| `author` | `String` | Yes |  |
+| `phrase` | `String` | Yes |  |
+| `religion` | `Integer` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Language.list(nil)
+results = client.Language.list
 ```
 
 ### Common Methods

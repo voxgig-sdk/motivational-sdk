@@ -116,9 +116,9 @@ const language = client.Language()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | Yes |  |
-| `phrase` | ``$STRING`` | Yes |  |
-| `religion` | ``$INTEGER`` | Yes |  |
+| `author` | `string` | Yes |  |
+| `phrase` | `string` | Yes |  |
+| `religion` | `number` | Yes |  |
 
 ### Operations
 

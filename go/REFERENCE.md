@@ -97,9 +97,9 @@ language := client.Language(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | Yes |  |
-| `phrase` | ``$STRING`` | Yes |  |
-| `religion` | ``$INTEGER`` | Yes |  |
+| `author` | `string` | Yes |  |
+| `phrase` | `string` | Yes |  |
+| `religion` | `int` | Yes |  |
 
 ### Operations
 
