@@ -19,9 +19,9 @@ main: {
           url: "https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI"
         }
       ]
+      summary: "This API provides a collection of catholic and secular motivational phrases to help users overcome their challenges."
       title: "Motivational API"
       version: "1.0.0"
+      website: "https://github.com/GomezMig03/MotivationalAPI"
     }
   }
-}
-

@@ -91,6 +91,7 @@ same parameters as `Direct()`.
 
 ```go
 language := client.Language(nil)
+fmt.Println(language.GetName()) // "language"
 ```
 
 ### Fields
@@ -109,6 +110,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Language(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

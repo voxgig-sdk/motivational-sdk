@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -224,14 +221,17 @@
           "name": "MIT",
           "url": "https://github.com/GomezMig03/MotivationalAPI/blob/main/LICENSE"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "jsDelivr CDN server",
             "url": "https://cdn.jsdelivr.net/gh/GomezMig03/MotivationalAPI"
           }
         ],
+        "summary": "This API provides a collection of catholic and secular motivational phrases to help users overcome their challenges.",
         "title": "Motivational API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://github.com/GomezMig03/MotivationalAPI"
       },
       "option": {},
       "target": {
@@ -284,6 +284,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -334,6 +337,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
