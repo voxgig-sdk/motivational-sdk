@@ -35,10 +35,12 @@ const client = new MotivationalSDK()
 
 ### 2. List language records
 
-`list()` resolves to an array of Language objects — iterate it directly:
+`list()` resolves to an array of Language ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
-const languages = await client.Language().list()
+const languages = await client.Language().list({ language: "example" })
 
 for (const language of languages) {
   console.log(language)
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = MotivationalSDK.test()
 
 const language = await client.Language().list()
-// language is a bare entity populated with mock response data
+// language is the entity, populated with mock response data
+// — call language.data() for the record itself
 console.log(language)
 ```
 
@@ -318,7 +321,7 @@ Create an instance: `const language = client.Language()`
 #### Example: List
 
 ```ts
-const languages = await client.Language().list()
+const languages = await client.Language().list({ language: "example" })
 ```
 
 

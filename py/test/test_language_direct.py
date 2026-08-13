@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from motivational_sdk.utility.voxgig_struct import voxgig_struct as vs
 from motivational_sdk import MotivationalSDK
-from core import helpers
+from motivational_sdk.core import helpers
 from test import runner
 
 

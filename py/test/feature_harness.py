@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import MotivationalControl
-from core.error import MotivationalError
-from core.result import MotivationalResult
-from core.spec import MotivationalSpec
+from motivational_sdk.config import make_config
+from motivational_sdk.features import _make_feature
+from motivational_sdk.core.control import MotivationalControl
+from motivational_sdk.core.error import MotivationalError
+from motivational_sdk.core.result import MotivationalResult
+from motivational_sdk.core.spec import MotivationalSpec
 
 
 # True when this SDK was generated with the named feature.

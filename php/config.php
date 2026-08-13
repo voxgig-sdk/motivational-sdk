@@ -74,6 +74,7 @@ class MotivationalConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{language}.json',
                   'parts' => [

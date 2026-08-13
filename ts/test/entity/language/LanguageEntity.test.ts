@@ -64,7 +64,7 @@ describe('LanguageEntity', async () => {
     const language_ref01_match: any = {}
     language_ref01_match['language'] = setup.idmap['language01']
 
-    const language_ref01_list = await language_ref01_ent.list(language_ref01_match)
+    const language_ref01_list = (await language_ref01_ent.list(language_ref01_match)).map((e: any) => e.data())
 
 
   })

@@ -98,7 +98,7 @@ language = client.Language()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Language().list()
+results = client.Language().list({"language": "example"})
 for language in results:
     print(language)
 ```

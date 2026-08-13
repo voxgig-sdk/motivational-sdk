@@ -23,7 +23,7 @@ support (`list`):
 
 ```ts
 const client = new MotivationalSDK()
-const items = await client.Language().list()
+const items = await client.Language().list({ language: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = MotivationalSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = MotivationalSDK.test({
+  entity: {
+    language: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const languages = await client.Language().list()
-// languages is an array of bare Language records populated with mock data
+// languages is an array of Language entities, populated with mock data
+// — call languages[0].data() for the record itself
 console.log(languages)
 ```
 
@@ -110,8 +119,8 @@ import { MotivationalSDK } from '@voxgig-sdk/motivational'
 
 const client = new MotivationalSDK()
 
-// List all languages (returns Language[])
-const languages = await client.Language().list()
+// List all languages (returns LanguageEntity[] — .data() for the record)
+const languages = await client.Language().list({ language: "example" })
 for (const language of languages) {
   console.log(language)
 }
@@ -170,7 +179,7 @@ from motivational_sdk import MotivationalSDK
 client = MotivationalSDK()
 
 # List all languages (returns a list, raises on error)
-languages = client.Language().list()
+languages = client.Language().list({"language": "example"})
 for language in languages:
     print(language)
 ```
@@ -343,6 +352,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/GomezMig03/MotivationalAPI](https://github.com/GomezMig03/MotivationalAPI)
 

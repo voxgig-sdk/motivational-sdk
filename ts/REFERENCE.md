@@ -127,7 +127,7 @@ const language = client.Language()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Language().list()
+const results = await client.Language().list({ language: "example" })
 ```
 
 ### Common Methods

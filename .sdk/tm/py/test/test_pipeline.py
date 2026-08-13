@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import MotivationalSDK
-from core.error import MotivationalError
-from core.result import MotivationalResult
-from core.response import MotivationalResponse
-from core.spec import MotivationalSpec
-from feature.base_feature import MotivationalBaseFeature
+from projectname_sdk.core.error import MotivationalError
+from projectname_sdk.core.result import MotivationalResult
+from projectname_sdk.core.response import MotivationalResponse
+from projectname_sdk.core.spec import MotivationalSpec
+from projectname_sdk.feature.base_feature import MotivationalBaseFeature
 
 
 def _client():

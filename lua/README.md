@@ -218,9 +218,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local language, err = client:Language():load()
+    local language, err = client:Language():list()
     if err then error(err) end
-    -- language is the loaded record
+    -- language is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.

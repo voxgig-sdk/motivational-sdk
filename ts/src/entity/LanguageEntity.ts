@@ -37,7 +37,7 @@ class LanguageEntity extends MotivationalEntityBase<Language> {
 
 
 
-  async list(this: any, reqmatch?: LanguageListMatch, ctrl?: Control): Promise<Language[]> {
+  async list(this: any, reqmatch?: LanguageListMatch, ctrl?: Control): Promise<LanguageEntity[]> {
 
     const utility = this._utility
 

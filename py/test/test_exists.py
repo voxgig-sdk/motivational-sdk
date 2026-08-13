@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Motivational SDK exists test
 
 import pytest
 from motivational_sdk import MotivationalSDK

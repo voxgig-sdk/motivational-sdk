@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ MotivationalUtility.registrar = ->(u) {
   u.prepare_params = MotivationalUtilities::PrepareParams
   u.prepare_path = MotivationalUtilities::PreparePath
   u.prepare_query = MotivationalUtilities::PrepareQuery
+  u.graphql_body = MotivationalUtilities::GraphqlBody
+  u.graphql_errors = MotivationalUtilities::GraphqlErrors
   u.result_basic = MotivationalUtilities::ResultBasic
   u.result_body = MotivationalUtilities::ResultBody
   u.result_headers = MotivationalUtilities::ResultHeaders
