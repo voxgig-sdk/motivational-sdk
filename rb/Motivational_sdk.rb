@@ -28,7 +28,7 @@ class MotivationalSDK
     utility = MotivationalUtility.new
     @_utility = utility
 
-    config = MotivationalConfig.make_config
+    config = MotivationalConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

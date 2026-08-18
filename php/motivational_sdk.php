@@ -40,7 +40,7 @@ class MotivationalSDK
         $utility = new MotivationalUtility();
         $this->_utility = $utility;
 
-        $config = MotivationalConfig::make_config();
+        $config = MotivationalConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

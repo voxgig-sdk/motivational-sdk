@@ -40,7 +40,7 @@ class LanguageEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = MotivationalConfig::make_config();
+        $cfg = MotivationalConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = MotivationalSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];
