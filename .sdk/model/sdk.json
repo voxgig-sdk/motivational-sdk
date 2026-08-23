@@ -36,18 +36,21 @@
               "active": true,
               "name": "author",
               "req": true,
+              "short": "The author of the phrase or source reference",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "phrase",
               "req": true,
+              "short": "The motivational phrase text",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "religion",
               "req": true,
+              "short": "Indicates if the phrase is religious.",
               "type": "`$INTEGER`"
             }
           ],

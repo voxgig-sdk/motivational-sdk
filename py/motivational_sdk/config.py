@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Motivational",
+            "slug": "motivational",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,16 +54,19 @@ def make_config():
           {
             "name": "author",
             "req": True,
+            "short": "The author of the phrase or source reference",
             "type": "`$STRING`",
           },
           {
             "name": "phrase",
             "req": True,
+            "short": "The motivational phrase text",
             "type": "`$STRING`",
           },
           {
             "name": "religion",
             "req": True,
+            "short": "Indicates if the phrase is religious.",
             "type": "`$INTEGER`",
           },
         ],

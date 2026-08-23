@@ -98,9 +98,9 @@ fmt.Println(language.GetName()) // "language"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | Yes |  |
-| `phrase` | `string` | Yes |  |
-| `religion` | `int` | Yes |  |
+| `author` | `string` | Yes | The author of the phrase or source reference |
+| `phrase` | `string` | Yes | The motivational phrase text |
+| `religion` | `int` | Yes | Indicates if the phrase is religious. |
 
 ### Operations
 

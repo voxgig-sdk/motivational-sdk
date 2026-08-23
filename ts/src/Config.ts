@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'Motivational',
+        slug: "motivational",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -57,16 +68,19 @@ class Config {
         {
           "name": "author",
           "req": true,
+          "short": "The author of the phrase or source reference",
           "type": "`$STRING`"
         },
         {
           "name": "phrase",
           "req": true,
+          "short": "The motivational phrase text",
           "type": "`$STRING`"
         },
         {
           "name": "religion",
           "req": true,
+          "short": "Indicates if the phrase is religious.",
           "type": "`$INTEGER`"
         }
       ],

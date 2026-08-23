@@ -93,9 +93,9 @@ language = client.Language
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `String` | Yes |  |
-| `phrase` | `String` | Yes |  |
-| `religion` | `Integer` | Yes |  |
+| `author` | `String` | Yes | The author of the phrase or source reference |
+| `phrase` | `String` | Yes | The motivational phrase text |
+| `religion` | `Integer` | Yes | Indicates if the phrase is religious. |
 
 ### Operations
 

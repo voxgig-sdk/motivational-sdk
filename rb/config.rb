@@ -19,6 +19,9 @@ module MotivationalConfig
     {
       "main" => {
         "name" => "Motivational",
+        "slug" => "motivational",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -42,16 +45,19 @@ module MotivationalConfig
             {
               "name" => "author",
               "req" => true,
+              "short" => "The author of the phrase or source reference",
               "type" => "`$STRING`",
             },
             {
               "name" => "phrase",
               "req" => true,
+              "short" => "The motivational phrase text",
               "type" => "`$STRING`",
             },
             {
               "name" => "religion",
               "req" => true,
+              "short" => "Indicates if the phrase is religious.",
               "type" => "`$INTEGER`",
             },
           ],

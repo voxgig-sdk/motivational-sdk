@@ -237,9 +237,9 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `phrase` |  |
-| `religion` |  |
+| `author` | The author of the phrase or source reference |
+| `phrase` | The motivational phrase text |
+| `religion` | Indicates if the phrase is religious. |
 
 Operations: List.
 
@@ -264,9 +264,9 @@ Create an instance: `language = client.Language`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `String` |  |
-| `phrase` | `String` |  |
-| `religion` | `Integer` |  |
+| `author` | `String` | The author of the phrase or source reference |
+| `phrase` | `String` | The motivational phrase text |
+| `religion` | `Integer` | Indicates if the phrase is religious. |
 
 #### Example: List
 

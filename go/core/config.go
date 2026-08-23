@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Motivational",
+			"slug": "motivational",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,16 +37,19 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "author",
 						"req": true,
+						"short": "The author of the phrase or source reference",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "phrase",
 						"req": true,
+						"short": "The motivational phrase text",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "religion",
 						"req": true,
+						"short": "Indicates if the phrase is religious.",
 						"type": "`$INTEGER`",
 					},
 				},

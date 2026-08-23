@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -287,9 +287,9 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `phrase` |  |
-| `religion` |  |
+| `author` | The author of the phrase or source reference |
+| `phrase` | The motivational phrase text |
+| `religion` | Indicates if the phrase is religious. |
 
 Operations: list.
 
@@ -314,9 +314,9 @@ Create an instance: `const language = client.Language()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `phrase` | `string` |  |
-| `religion` | `number` |  |
+| `author` | `string` | The author of the phrase or source reference |
+| `phrase` | `string` | The motivational phrase text |
+| `religion` | `number` | Indicates if the phrase is religious. |
 
 #### Example: List
 

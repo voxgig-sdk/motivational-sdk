@@ -6,7 +6,7 @@ The Golang SDK for the Motivational API — an entity-oriented client using stan
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Language(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -260,9 +260,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"author"` |  |
-| `"phrase"` |  |
-| `"religion"` |  |
+| `"author"` | The author of the phrase or source reference |
+| `"phrase"` | The motivational phrase text |
+| `"religion"` | Indicates if the phrase is religious. |
 
 Operations: List.
 
@@ -287,9 +287,9 @@ Create an instance: `language := client.Language(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `phrase` | `string` |  |
-| `religion` | `int` |  |
+| `author` | `string` | The author of the phrase or source reference |
+| `phrase` | `string` | The motivational phrase text |
+| `religion` | `int` | Indicates if the phrase is religious. |
 
 #### Example: List
 

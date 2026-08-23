@@ -87,9 +87,9 @@ language = client.Language()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `str` | Yes |  |
-| `phrase` | `str` | Yes |  |
-| `religion` | `int` | Yes |  |
+| `author` | `str` | Yes | The author of the phrase or source reference |
+| `phrase` | `str` | Yes | The motivational phrase text |
+| `religion` | `int` | Yes | Indicates if the phrase is religious. |
 
 ### Operations
 

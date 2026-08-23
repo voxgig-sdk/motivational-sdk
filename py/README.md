@@ -243,9 +243,9 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `phrase` |  |
-| `religion` |  |
+| `author` | The author of the phrase or source reference |
+| `phrase` | The motivational phrase text |
+| `religion` | Indicates if the phrase is religious. |
 
 Operations: List.
 
@@ -270,9 +270,9 @@ Create an instance: `language = client.Language()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `str` |  |
-| `phrase` | `str` |  |
-| `religion` | `int` |  |
+| `author` | `str` | The author of the phrase or source reference |
+| `phrase` | `str` | The motivational phrase text |
+| `religion` | `int` | Indicates if the phrase is religious. |
 
 #### Example: List
 

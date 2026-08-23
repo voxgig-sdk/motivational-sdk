@@ -231,9 +231,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `phrase` |  |
-| `religion` |  |
+| `author` | The author of the phrase or source reference |
+| `phrase` | The motivational phrase text |
+| `religion` | Indicates if the phrase is religious. |
 
 Operations: List.
 
@@ -258,9 +258,9 @@ Create an instance: `local language = client:Language(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `phrase` | `string` |  |
-| `religion` | `number` |  |
+| `author` | `string` | The author of the phrase or source reference |
+| `phrase` | `string` | The motivational phrase text |
+| `religion` | `number` | Indicates if the phrase is religious. |
 
 #### Example: List
 
