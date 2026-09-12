@@ -98,8 +98,10 @@ class MotivationalConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{language}.json',
-                  'parts' => [
-                    '{language}.json',
+                  'segments' => [
+                    [
+                      'lit' => '{language}.json',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -109,6 +111,9 @@ class MotivationalConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{language}.json',
                   ],
                 ],
               ],

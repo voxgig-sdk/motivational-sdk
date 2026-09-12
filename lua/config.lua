@@ -72,8 +72,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{language}.json",
-                ["parts"] = {
-                  "{language}.json",
+                ["segments"] = {
+                  {
+                    ["lit"] = "{language}.json",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -83,6 +85,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{language}.json",
                 },
               },
             },

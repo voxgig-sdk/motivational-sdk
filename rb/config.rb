@@ -84,8 +84,10 @@ module MotivationalConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{language}.json",
-                  "parts" => [
-                    "{language}.json",
+                  "segments" => [
+                    {
+                      "lit" => "{language}.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -96,6 +98,9 @@ module MotivationalConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{language}.json",
+                  ],
                 },
               ],
             },

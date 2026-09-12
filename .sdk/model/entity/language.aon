@@ -45,8 +45,10 @@ main: kit: entity: language: {
           }
           method: "GET"
           orig: "/{language}.json"
-          parts: [
-            "{language}.json"
+          segments: [
+            {
+              lit: "{language}.json"
+            }
           ]
           select: {
             exist: [
