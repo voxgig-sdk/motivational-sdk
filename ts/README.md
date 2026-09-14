@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MotivationalSDK } from '@voxgig-sdk/motivational'
+import { MotivationalSDK } from '@voxgig-sdk/motivational-sdk'
 
 const client = new MotivationalSDK()
 ```
@@ -407,7 +407,7 @@ motivational/
 Import the SDK from the package root:
 
 ```ts
-import { MotivationalSDK } from '@voxgig-sdk/motivational'
+import { MotivationalSDK } from '@voxgig-sdk/motivational-sdk'
 ```
 
 ### Entity state

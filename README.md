@@ -105,7 +105,7 @@ local results, err = client:Language():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/releases) |
+| TypeScript | `@voxgig-sdk/motivational-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/releases) |
 | Python | `voxgig-sdk-motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/releases) |
 | PHP | `voxgig-sdk/motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/motivational-sdk/go` | `go get github.com/voxgig-sdk/motivational-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Language():list()
 ### TypeScript
 
 ```ts
-import { MotivationalSDK } from '@voxgig-sdk/motivational'
+import { MotivationalSDK } from '@voxgig-sdk/motivational-sdk'
 
 const client = new MotivationalSDK()
 
