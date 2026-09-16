@@ -4,19 +4,19 @@
       "LANGUAGE00": {
         "author": "s1e",
         "phrase": "s1f",
-        "religion": "s20",
+        "religion": 32,
         "language": "LANGUAGE01"
       },
       "LANGUAGE01": {
         "author": "s3c",
         "phrase": "s3d",
-        "religion": "s3e",
+        "religion": 62,
         "language": "LANGUAGE01"
       },
       "LANGUAGE02": {
         "author": "s5a",
         "phrase": "s5b",
-        "religion": "s5c",
+        "religion": 92,
         "language": "LANGUAGE01"
       }
     }
@@ -26,7 +26,147 @@
       "language_ref01": {
         "author": "s78",
         "phrase": "s79",
-        "religion": "s7a"
+        "religion": 122
+      }
+    }
+  },
+  "requests": {
+    "GET /{language}.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getMotivationalPhrases",
+        "parameters": [
+          {
+            "description": "Language code for the motivational phrases",
+            "examples": {
+              "english": {
+                "summary": "English phrases",
+                "value": "en"
+              },
+              "french": {
+                "summary": "French phrases",
+                "value": "fr"
+              },
+              "japanese": {
+                "summary": "Japanese phrases",
+                "value": "ja"
+              },
+              "spanish": {
+                "summary": "Spanish phrases",
+                "value": "es"
+              }
+            },
+            "in": "path",
+            "name": "language",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "es",
+                "fr",
+                "ja"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "phrases": {
+                    "summary": "Example motivational phrases",
+                    "value": [
+                      {
+                        "author": "Robert Frost",
+                        "phrase": "The only way out is through.",
+                        "religion": 0
+                      },
+                      {
+                        "author": "Philippians 4:13",
+                        "phrase": "I can do all things through Christ who strengthens me.",
+                        "religion": 1
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "author": {
+                        "description": "The author of the phrase or source reference",
+                        "type": "string"
+                      },
+                      "phrase": {
+                        "description": "The motivational phrase text",
+                        "type": "string"
+                      },
+                      "religion": {
+                        "description": "Indicates if the phrase is religious. 1 = catholic, 0 = non-religious",
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "phrase",
+                      "author",
+                      "religion"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response with array of motivational phrases"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Language file not found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Server error"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

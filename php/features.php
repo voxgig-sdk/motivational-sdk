@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Motivational SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class MotivationalFeatures
@@ -14,8 +17,14 @@ class MotivationalFeatures
         switch ($name) {
             case "base":
                 return new MotivationalBaseFeature();
+            case "ratelimit":
+                return new MotivationalRatelimitFeature();
+            case "retry":
+                return new MotivationalRetryFeature();
             case "test":
                 return new MotivationalTestFeature();
+            case "timeout":
+                return new MotivationalTimeoutFeature();
             default:
                 return new MotivationalBaseFeature();
         }
@@ -31,7 +40,10 @@ class MotivationalFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
