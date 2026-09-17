@@ -105,12 +105,12 @@ local results, err = client:Language():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/motivational-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/releases) |
-| Python | `voxgig-sdk-motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/releases) |
-| PHP | `voxgig-sdk/motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/releases) |
+| TypeScript | `@voxgig-sdk/motivational-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/tags) |
+| Python | `voxgig-sdk-motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/tags) |
+| PHP | `voxgig-sdk/motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/motivational-sdk/go` | `go get github.com/voxgig-sdk/motivational-sdk/go@latest` |
-| Ruby | `voxgig-sdk-motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/releases) |
-| Lua | `voxgig-sdk-motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/releases) |
+| Ruby | `voxgig-sdk-motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/tags) |
+| Lua | `voxgig-sdk-motivational` | publish pending — [install from git tag](https://github.com/voxgig-sdk/motivational-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/motivational-sdk/go-cli` | `go install github.com/voxgig-sdk/motivational-sdk/go-cli/cmd/motivational@latest` |
 | Go MCP server | `github.com/voxgig-sdk/motivational-sdk/go-mcp` | `go get github.com/voxgig-sdk/motivational-sdk/go-mcp@latest` |
 
