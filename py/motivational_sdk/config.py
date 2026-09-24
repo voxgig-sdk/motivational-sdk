@@ -116,21 +116,24 @@ def make_config():
         "fields": [
           {
             "name": "author",
+            "title": "Author",
+            "type": "`$STRING`",
             "req": True,
             "short": "The author of the phrase or source reference",
-            "type": "`$STRING`",
           },
           {
             "name": "phrase",
+            "title": "Phrase",
+            "type": "`$STRING`",
             "req": True,
             "short": "The motivational phrase text",
-            "type": "`$STRING`",
           },
           {
             "name": "religion",
+            "title": "Religion",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Indicates if the phrase is religious.",
-            "type": "`$INTEGER`",
           },
         ],
         "name": "language",
@@ -140,18 +143,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "en",
-                      "kind": "param",
-                      "name": "language",
-                      "orig": "language",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{language}.json",
@@ -160,18 +151,31 @@ def make_config():
                     "lit": "{language}.json",
                   },
                 ],
+                "parts": [
+                  "{language}.json",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "language",
+                      "orig": "language",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "en",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "language",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{language}.json",
-                ],
               },
             ],
           },

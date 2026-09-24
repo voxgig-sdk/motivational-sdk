@@ -1,0 +1,77 @@
+# Entity: language
+
+main: kit: entity: language: {
+
+  alias: field: {}
+
+  fields: {
+    author: {
+      h: "Author"
+      n: "author"
+      r: true
+      sh: "The author of the phrase or source reference"
+      t: "`$STRING`"
+    }
+    phrase: {
+      h: "Phrase"
+      n: "phrase"
+      r: true
+      sh: "The motivational phrase text"
+      t: "`$STRING`"
+    }
+    religion: {
+      h: "Religion"
+      n: "religion"
+      r: true
+      sh: "Indicates if the phrase is religious."
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "language"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /{language}.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "en"
+                k: "param"
+                n: "language"
+                or: "language"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{language}.json"
+          q: {
+            exist: [
+              "language"
+            ]
+          }
+          s: [
+            {
+              lit: "{language}.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -43,7 +43,7 @@ local languages, err = client:Language():list()
 if err then error(err) end
 
 for _, item in ipairs(languages) do
-  print(item["author"])
+  print(item)
 end
 ```
 

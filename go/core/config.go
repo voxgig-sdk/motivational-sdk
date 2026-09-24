@@ -91,21 +91,24 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"title": "Author",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The author of the phrase or source reference",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "phrase",
+						"title": "Phrase",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The motivational phrase text",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "religion",
+						"title": "Religion",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Indicates if the phrase is religious.",
-						"type": "`$INTEGER`",
 					},
 				},
 				"name": "language",
@@ -115,18 +118,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "en",
-											"kind": "param",
-											"name": "language",
-											"orig": "language",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{language}.json",
@@ -135,17 +126,30 @@ func MakeConfig() map[string]any {
 										"lit": "{language}.json",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"parts": []any{
+									"{language}.json",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"{language}.json",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "en",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"language",
+									},
 								},
 							},
 						},

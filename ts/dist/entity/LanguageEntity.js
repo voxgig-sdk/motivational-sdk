@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LanguageEntity = void 0;
 const MotivationalEntityBase_1 = require("../MotivationalEntityBase");
-// TODO: needs Entity superclass
 class LanguageEntity extends MotivationalEntityBase_1.MotivationalEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

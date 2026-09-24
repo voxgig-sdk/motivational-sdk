@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -139,21 +132,24 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "title": "Author",
+          "type": "`$STRING`",
           "req": true,
-          "short": "The author of the phrase or source reference",
-          "type": "`$STRING`"
+          "short": "The author of the phrase or source reference"
         },
         {
           "name": "phrase",
+          "title": "Phrase",
+          "type": "`$STRING`",
           "req": true,
-          "short": "The motivational phrase text",
-          "type": "`$STRING`"
+          "short": "The motivational phrase text"
         },
         {
           "name": "religion",
+          "title": "Religion",
+          "type": "`$INTEGER`",
           "req": true,
-          "short": "Indicates if the phrase is religious.",
-          "type": "`$INTEGER`"
+          "short": "Indicates if the phrase is religious."
         }
       ],
       "name": "language",
@@ -163,18 +159,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "example": "en",
-                    "kind": "param",
-                    "name": "language",
-                    "orig": "language",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/{language}.json",
@@ -183,18 +167,31 @@ class Config {
                   "lit": "{language}.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language"
-                ]
-              },
+              "parts": [
+                "{language}.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "{language}.json"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "en"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "language"
+                ]
+              }
             }
           ]
         }

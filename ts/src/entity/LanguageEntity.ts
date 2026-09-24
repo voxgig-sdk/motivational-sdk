@@ -19,7 +19,6 @@ import type {
   LanguageListMatch,
 } from '../MotivationalTypes'
 
-// TODO: needs Entity superclass
 class LanguageEntity extends MotivationalEntityBase<Language> {
 
   constructor(client: MotivationalSDK, entopts: any) {

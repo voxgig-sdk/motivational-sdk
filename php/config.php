@@ -113,21 +113,24 @@ class MotivationalConfig
           'fields' => [
             [
               'name' => 'author',
+              'title' => 'Author',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'The author of the phrase or source reference',
-              'type' => '`$STRING`',
             ],
             [
               'name' => 'phrase',
+              'title' => 'Phrase',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'The motivational phrase text',
-              'type' => '`$STRING`',
             ],
             [
               'name' => 'religion',
+              'title' => 'Religion',
+              'type' => '`$INTEGER`',
               'req' => true,
               'short' => 'Indicates if the phrase is religious.',
-              'type' => '`$INTEGER`',
             ],
           ],
           'name' => 'language',
@@ -137,18 +140,6 @@ class MotivationalConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'example' => 'en',
-                        'kind' => 'param',
-                        'name' => 'language',
-                        'orig' => 'language',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{language}.json',
@@ -157,17 +148,30 @@ class MotivationalConfig
                       'lit' => '{language}.json',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'language',
-                    ],
+                  'parts' => [
+                    '{language}.json',
                   ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    '{language}.json',
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'language',
+                        'orig' => 'language',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                        'example' => 'en',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'language',
+                    ],
                   ],
                 ],
               ],
