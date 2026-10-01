@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 MotivationalUtility::setRegistrar(function (MotivationalUtility $u): void {
     $u->clean = [MotivationalClean::class, 'call'];
+    $u->clean_add = [MotivationalClean::class, 'add'];
+    $u->clean_explain = [MotivationalDone::class, 'clean_explain'];
     $u->done = [MotivationalDone::class, 'call'];
     $u->make_error = [MotivationalMakeError::class, 'call'];
     $u->feature_add = [MotivationalFeatureAdd::class, 'call'];

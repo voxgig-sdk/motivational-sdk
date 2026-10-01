@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 MotivationalUtility.registrar = ->(u) {
   u.clean = MotivationalUtilities::Clean
+  u.clean_add = MotivationalUtilities::CleanAdd
+  u.clean_explain = MotivationalUtilities::CleanExplain
   u.done = MotivationalUtilities::Done
   u.make_error = MotivationalUtilities::MakeError
   u.feature_add = MotivationalUtilities::FeatureAdd
