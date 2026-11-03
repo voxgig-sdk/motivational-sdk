@@ -12,5 +12,5 @@ var NewTestFeatureFunc func() Feature
 
 var NewTimeoutFeatureFunc func() Feature
 
-var NewLanguageEntityFunc func(client *MotivationalSDK, entopts map[string]any) MotivationalEntity
+var NewLanguageEntityFunc func(client *MotivationalSDK, entopts map[string]any) MotivationalEntityBase
 

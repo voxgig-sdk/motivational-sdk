@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/motivational-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/motivational-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -41,7 +41,7 @@ $client = new MotivationalSDK();
 ```php
 try {
     // list() returns entity instances; data_get() reads each record.
-    $languages = $client->Language()->list();
+    $languages = $client->Language()->list(["language" => "example"]);
     foreach ($languages as $record) {
         $item = $record->data_get();
         echo $item["author"] . "\n";
@@ -59,7 +59,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $languages = $client->Language()->list();
+    $languages = $client->Language()->list(["language" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -133,7 +133,7 @@ $client = MotivationalSDK::test();
 
 // list() returns entity instances (throws on error);
 // call data_get() for the mock record.
-$language = $client->Language()->list();
+$language = $client->Language()->list(["language" => "example"]);
 print_r(array_map(fn($item) => $item->data_get(), $language));
 ```
 
@@ -221,7 +221,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -231,9 +231,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -287,8 +287,8 @@ Create an instance: `$language = $client->Language();`
 #### Example: List
 
 ```php
-// list() returns an array of Language records (throws on error).
-$languages = $client->Language()->list();
+// list() returns an array of Language entities, one per record (throws on error).
+$languages = $client->Language()->list(["language" => "example"]);
 ```
 
 ## Features
@@ -454,7 +454,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $language = $client->Language();
-$language->list();
+$language->list(["language" => "example"]);
 
 // $language->data_get() now returns the language data from the last list
 // $language->match_get() returns the last match criteria

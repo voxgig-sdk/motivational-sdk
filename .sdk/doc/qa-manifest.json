@@ -3,5 +3,15 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Indicates if the phrase is religious. 1 = catholic, 0 = non-religious",
+      "Successful response with array of motivational phrases",
+      "The author of the phrase or source reference",
+      "The motivational phrase text",
+      "This API provides a collection of catholic and secular motivational phrases to help users overcome their challenges. It is intended to be utilized in applications focused on motivation and support, like addiction recovery tools.",
+      "jsDelivr CDN server"
+    ]
+  }
 }

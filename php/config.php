@@ -93,6 +93,7 @@ class MotivationalConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -172,6 +173,10 @@ class MotivationalConfig
                     'exist' => [
                       'language',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

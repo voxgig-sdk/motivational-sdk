@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Language();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.MotivationalSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Language().list({ "language": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.MOTIVATIONAL_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "author": { "a": true, "h": "Author", "n": "author", "r": true, "sh": "The author of the phrase or source reference", "t": "`$STRING`", "key$": "author", "index$": 0 }, "phrase": { "a": true, "h": "Phrase", "n": "phrase", "r": true, "sh": "The motivational phrase text", "t": "`$STRING`", "key$": "phrase", "index$": 1 }, "religion": { "a": true, "h": "Religion", "n": "religion", "r": true, "sh": "Indicates if the phrase is religious.", "t": "`$INTEGER`", "key$": "religion", "index$": 2 } }, "name": "language", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /{language}.json", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "en", "k": "param", "n": "language", "or": "language", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/{language}.json", "q": { "exist": ["language"] }, "r": {}, "s": [{ "lit": "{language}.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "language", "name__orig": "language", "Name": "Language", "name_": "language", "name-": "language", "NAME": "LANGUAGE", "index$": 0 }, { "active": true, "entity": "language", "key$": "BasicLanguageFlow", "kind": "basic", "name": "BasicLanguageFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": { "language": "language01" }, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "language_ref01" } }], "index$": 0 }] }, 'Language', { "GET /{language}.json": { "protocol": "http", "parameters": [{ "name": "language", "in": "path", "description": "Language code for the motivational phrases", "required": true, "schema": { "type": "string", "enum": ["en", "es", "fr", "ja"] }, "examples": { "english": { "value": "en", "summary": "English phrases" }, "spanish": { "value": "es", "summary": "Spanish phrases" }, "french": { "value": "fr", "summary": "French phrases" }, "japanese": { "value": "ja", "summary": "Japanese phrases" } }, "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "author": { "a": true, "h": "Author", "n": "author", "r": true, "sh": "The author of the phrase or source reference", "t": "`$STRING`", "key$": "author", "index$": 0 }, "phrase": { "a": true, "h": "Phrase", "n": "phrase", "r": true, "sh": "The motivational phrase text", "t": "`$STRING`", "key$": "phrase", "index$": 1 }, "religion": { "a": true, "h": "Religion", "n": "religion", "r": true, "sh": "Indicates if the phrase is religious.", "t": "`$INTEGER`", "key$": "religion", "index$": 2 } }, "name": "language", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /{language}.json", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "en", "k": "param", "n": "language", "or": "language", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/{language}.json", "q": { "exist": ["language"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "{language}.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "language", "name__orig": "language", "Name": "Language", "name_": "language", "name-": "language", "NAME": "LANGUAGE", "index$": 0 }, { "active": true, "entity": "language", "key$": "BasicLanguageFlow", "kind": "basic", "name": "BasicLanguageFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": { "language": "language01" }, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "language_ref01" } }], "index$": 0 }] }, 'Language', { "GET /{language}.json": { "protocol": "http", "parameters": [{ "name": "language", "in": "path", "description": "Language code for the motivational phrases", "required": true, "schema": { "type": "string", "enum": ["en", "es", "fr", "ja"] }, "examples": { "english": { "value": "en", "summary": "English phrases" }, "spanish": { "value": "es", "summary": "Spanish phrases" }, "french": { "value": "fr", "summary": "French phrases" }, "japanese": { "value": "ja", "summary": "Japanese phrases" } }, "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -76,6 +84,11 @@ const utility_1 = require("../../utility");
         const language_ref01_list = (await language_ref01_ent.list(language_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

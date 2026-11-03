@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type MotivationalEntity = core.MotivationalEntity
+type MotivationalEntityBase = core.MotivationalEntityBase
+
+// Deprecated: use MotivationalEntityBase.
+type MotivationalEntity = core.MotivationalEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,7 +46,7 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewLanguageEntityFunc = func(client *core.MotivationalSDK, entopts map[string]any) core.MotivationalEntity {
+	core.NewLanguageEntityFunc = func(client *core.MotivationalSDK, entopts map[string]any) core.MotivationalEntityBase {
 		return entity.NewLanguageEntity(client, entopts)
 	}
 }

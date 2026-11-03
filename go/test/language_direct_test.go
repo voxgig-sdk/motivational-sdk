@@ -10,6 +10,12 @@ import (
 	"github.com/voxgig-sdk/motivational-sdk/go/core"
 )
 
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const languageDirectLiveStrict = true
+
 func TestLanguageDirect(t *testing.T) {
 	t.Run("direct-list-language", func(t *testing.T) {
 		setup := languageDirectSetup([]any{
@@ -30,7 +36,7 @@ func TestLanguageDirect(t *testing.T) {
 		if setup.live {
 			for _, _liveKey := range []string{"language01"} {
 				if v := setup.idmap[_liveKey]; v == nil {
-					t.Skipf("live test needs %s via *_ENTID env var (synthetic IDs only)", _liveKey)
+					liveMiss(t, languageDirectLiveStrict, "Live test blocked: needs %s via MOTIVATIONAL_TEST_LANGUAGE_ENTID", _liveKey)
 					return
 				}
 			}
@@ -38,6 +44,7 @@ func TestLanguageDirect(t *testing.T) {
 		client := setup.client
 
 		params := map[string]any{}
+		query := map[string]any{}
 		if setup.live {
 			params["language"] = setup.idmap["language01"]
 		} else {
@@ -48,21 +55,17 @@ func TestLanguageDirect(t *testing.T) {
 			"path":   "{language}.json",
 			"method": "GET",
 			"params": params,
+			"query":  query,
 		})
 		if setup.live {
-			// Live-mode leniency is a model decision
-			// (main.kit.test.live.strict): synthetic IDs 4xx constantly
-			// against an arbitrary public API, so the default SKIPS here.
-			// A project that owns its test server sets strict and FAILS.
 			if err != nil {
-				t.Fatalf("list call failed (likely synthetic IDs against live API): %v", err)
+				liveMiss(t, languageDirectLiveStrict, "Live list failed: %v", err)
 			}
-			if result["ok"] != true {
-				t.Fatalf("list call not ok (likely synthetic IDs against live API): %v", result)
+			if status := core.ToInt(result["status"]); result["ok"] != true || status < 200 || status >= 300 {
+				liveMiss(t, languageDirectLiveStrict, "Live list failed: %s", liveDescribe(result))
 			}
-			status := core.ToInt(result["status"])
-			if status < 200 || status >= 300 {
-				t.Fatalf("expected 2xx status, got %v", result["status"])
+			if _, ok := liveList(result["data"]); !ok {
+				liveMiss(t, languageDirectLiveStrict, "Live list returned no list: %s", liveDescribe(result))
 			}
 		} else {
 			if err != nil {
@@ -142,6 +145,12 @@ func languageDirectSetup(mockres any) *languageDirectSetupResult {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {
 				idmap = entidMap
+			}
+		}
+		// A path parameter's example stands in for an id *_ENTID does not give.
+		for k, v := range map[string]any{"language01": "en"} {
+			if idmap[k] == nil {
+				idmap[k] = v
 			}
 		}
 
